@@ -10,7 +10,7 @@ class TransactionsStatment:
 
 class Account:
     def __init__(self, statting_account_state):
-        self.account = statting_account_state
+        self.money_in_account = statting_account_state
         self.transactions = {}
         self.transactions_id = 0
 
@@ -19,15 +19,16 @@ class Account:
 
 
     def withdraw(self, withdraw_money: int) -> None:
-        self.account -= withdraw_money
+        self.money_in_account -= withdraw_money
         self.transactions_id += 1
-        transaction = TransactionsStatment(self.account, withdraw_money, self.get_string_current_date())
+        transaction = TransactionsStatment(self.money_in_account, withdraw_money, self.get_string_current_date())
         self.preserve_transaction_in_container(transaction)
 
 
     def deposit(self, money: int) -> None:
-        self.account += money
+        self.money_in_account += money
         self.transactions_id += 1
+        
         
 
     def get_string_current_date(self):
