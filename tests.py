@@ -43,13 +43,14 @@ def test_incrementation_id_after_making_fewe_transaction():
     assert account.transactions_id == 2
 
 
-
 def test_printStatment_after_windraw_operation_should_return_string_with_operation_statment():
     account = Account(100)
     money_afret_operation = 500
     withdraw_money = 100
     date = "12-01-2022"
-    withdtaw_transaction = TransactionsStatment(money_afret_operation, withdraw_money, date)
+    withdtaw_transaction = TransactionsStatment(
+        money_afret_operation, withdraw_money, date
+    )
     account.transactions = {1: withdtaw_transaction}
     expected = f"Date          Amount      Balance\n{date}\t{withdraw_money}\t{money_afret_operation}\n"
     assert account.printStatment() == expected

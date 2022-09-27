@@ -38,5 +38,10 @@ class Account:
         return datetime.date.today().strftime("%d-%m-%Y")
 
     def printStatment(self) -> str:
-        pattert = "Date          Amount      Balance"
-        pass
+        statment = "Date          Amount      Balance\n"
+        for _, transaction in self.transactions.items():
+            transaction_row = (
+                f"{transaction.date}\t{transaction.amount}\t{transaction.balance}\n"
+            )
+            statment += transaction_row
+        return statment
