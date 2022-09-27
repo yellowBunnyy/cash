@@ -1,10 +1,8 @@
 from dataclasses import dataclass
 import datetime
-import dataclasses
 
 @dataclass
 class TransactionsStatment:
-    transaction_id: int
     balance: str
     amount: str
     date: str
@@ -17,13 +15,13 @@ class Account:
         self.transactions_id = 0
 
     def preserve_transaction_in_container(self, transaction:TransactionsStatment):
-        self.transactions.update(transaction)
+        self.transactions.update({self.transactions_id: transaction})
 
 
     def withdraw(self, withdraw_money: int) -> None:
         self.account -= withdraw_money
         self.transactions_id += 1
-        transaction = TransactionsStatment(self.transactions_id, self.account, withdraw_money, self.get_string_current_date())
+        transaction = TransactionsStatment(self.account, withdraw_money, self.get_string_current_date())
         self.preserve_transaction_in_container(transaction)
 
 

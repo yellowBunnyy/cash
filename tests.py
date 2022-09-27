@@ -9,8 +9,16 @@ def test_withdraw_money_from_account():
     assert account.account == 0
     assert account.transactions_id == 1
 
-def test_preserve_transaction_in_container():
-    pass
+@patch("app.datetime")
+def test_preserve_transaction_in_container(mocked_date):
+    mocked_date.date.today.return_value = "12-01-2022"
+    money_in_account = 200
+    money_to_withdraw = 100
+    transaction_id = 0
+    acconut = Account(money_in_account)
+    transaction = TransactionsStatment(100, money_to_withdraw, "12-01-2022")
+    acconut.preserve_transaction_in_container(transaction)
+    assert acconut.transactions == {transaction_id: transaction}
 
 
 
