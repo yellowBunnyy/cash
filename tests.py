@@ -34,4 +34,11 @@ def test_get_current_date(mock_date):
     inst = Account(100)
     assert inst.get_string_current_date() == "13-01-2022"
 
+def test_incrementation_id_after_making_fewe_transaction():
+    account = Account(200)
+    account.withdraw(100)
+    account.deposit(100)
+    assert account.transactions_id == 2
+    
+
 
