@@ -58,10 +58,10 @@ def test_printStatment_after_windraw_operation_should_return_string_with_operati
     withdraw_money = 100
     date = "12-01-2022"
     withdtaw_transaction = TransactionsStatment(
-        money_afret_operation, withdraw_money, date
+        money_afret_operation, f"-{withdraw_money}", date
     )
     account.transactions = {1: withdtaw_transaction}
-    expected = f"Date          Amount      Balance\n{date}\t{withdraw_money}\t{money_afret_operation}\n"
+    expected = f"Date          Amount      Balance\n{date}\t-100\t{money_afret_operation}\n"
     assert account.printStatment() == expected
 
 
@@ -75,8 +75,8 @@ def test_preserve_transaction_in_container_after_few_operations(mocked_date):
     acconut = Account(money_in_account)
     acconut.withdraw(100)
     acconut.deposit(200)
-    withdtaw_transaction = TransactionsStatment(100, 100, "12-01-2022")
-    deposit_transaction = TransactionsStatment(300, 200, "12-01-2022")
+    withdtaw_transaction = TransactionsStatment(100, "-100", "12-01-2022")
+    deposit_transaction = TransactionsStatment(300, "+200", "12-01-2022")
     assert acconut.transactions == {1: withdtaw_transaction, 2: deposit_transaction}
     assert acconut.transactions_id == 2
     assert acconut.money_in_account == 300

@@ -1,13 +1,13 @@
 from dataclasses import dataclass
 import datetime
-
+import pdb
 class NotEnoughMoney(Exception):
     pass
 
 @dataclass
 class TransactionsStatment:
     balance: int
-    amount: int
+    amount: str
     date: str
 
 
@@ -27,7 +27,7 @@ class Account:
         self.money_in_account -= withdraw_money
         self.transactions_id += 1
         transaction = TransactionsStatment(
-            self.money_in_account, withdraw_money, self.get_string_current_date()
+            self.money_in_account, f"-{withdraw_money}", self.get_string_current_date()
         )
         self.preserve_transaction_in_container(transaction)
 
@@ -35,7 +35,7 @@ class Account:
         self.money_in_account += deposit_money
         self.transactions_id += 1
         transaction = TransactionsStatment(
-            self.money_in_account, deposit_money, self.get_string_current_date()
+            self.money_in_account, f"+{deposit_money}", self.get_string_current_date()
         )
         self.preserve_transaction_in_container(transaction)
 
@@ -50,3 +50,4 @@ class Account:
             )
             statment += transaction_row
         return statment
+
