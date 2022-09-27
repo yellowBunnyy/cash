@@ -12,7 +12,7 @@ class Account:
         self.account += money
     
     def get_string_current_date(self):
-        return datetime.date.today()
+        return datetime.date.today().strftime("%d-%m-%Y")
 
     def printStatment(self) -> None:
         pass
