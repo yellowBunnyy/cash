@@ -1,6 +1,6 @@
 import datetime
 from unittest.mock import patch
-from app import Account
+from app import Account, TransactionsStatment
 
 
 def test_withdraw_money_from_account():
@@ -8,6 +8,12 @@ def test_withdraw_money_from_account():
     account.withdraw(100)
     assert account.account == 0
     assert account.transactions_id == 1
+
+def test_preserve_transaction_in_container():
+    pass
+
+
+
 
 
 def test_depisit_money_return_sum_depisit_and_money_in_acount():
