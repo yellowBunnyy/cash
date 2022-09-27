@@ -12,15 +12,19 @@ class TransactionsStatment:
 
 
 class Account:
+
     def __init__(self, statting_account_state):
         self.money_in_account = statting_account_state
         self.transactions = {}
         self.transactions_id = 0
+    
 
     def preserve_transaction_in_container(self, transaction: TransactionsStatment):
         self.transactions.update({self.transactions_id: transaction})
 
     def withdraw(self, withdraw_money: int) -> None:
+        if withdraw_money > self.money_in_account:
+            raise NotEnoughMoney
         self.money_in_account -= withdraw_money
         self.transactions_id += 1
         transaction = TransactionsStatment(
