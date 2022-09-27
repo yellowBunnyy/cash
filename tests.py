@@ -9,6 +9,7 @@ def test_withdraw_money_from_account():
     assert account.money_in_account == 0
     assert account.transactions_id == 1
 
+
 @patch("app.datetime")
 def test_preserve_transaction_in_container(mocked_date):
     mocked_date.date.today.return_value = "12-01-2022"
@@ -26,7 +27,7 @@ def test_depisit_money_return_sum_depisit_and_money_in_acount():
     account.deposit(100)
     assert account.money_in_account == 200
     assert account.transactions_id == 1
-    
+
 
 @patch("app.datetime")
 def test_get_current_date(mock_date):
@@ -34,13 +35,28 @@ def test_get_current_date(mock_date):
     inst = Account(100)
     assert inst.get_string_current_date() == "13-01-2022"
 
+
 def test_incrementation_id_after_making_fewe_transaction():
     account = Account(200)
     account.withdraw(100)
     account.deposit(100)
     assert account.transactions_id == 2
 
-#integration tests
+
+
+def test_printStatment_after_windraw_operation_should_return_string_with_operation_statment():
+    account = Account(100)
+    money_afret_operation = 500
+    withdraw_money = 100
+    date = "12-01-2022"
+    withdtaw_transaction = TransactionsStatment(money_afret_operation, withdraw_money, date)
+    account.transactions = {1: withdtaw_transaction}
+    expected = f"Date          Amount      Balance\n{date}\t{withdraw_money}\t{money_afret_operation}\n"
+    assert account.printStatment() == expected
+
+
+# integration tests
+
 
 @patch("app.Account.get_string_current_date")
 def test_preserve_transaction_in_container_after_few_operations(mocked_date):
@@ -51,6 +67,6 @@ def test_preserve_transaction_in_container_after_few_operations(mocked_date):
     acconut.deposit(200)
     withdtaw_transaction = TransactionsStatment(100, 100, "12-01-2022")
     deposit_transaction = TransactionsStatment(300, 200, "12-01-2022")
-    assert acconut.transactions == {1: withdtaw_transaction, 2:deposit_transaction}
+    assert acconut.transactions == {1: withdtaw_transaction, 2: deposit_transaction}
     assert acconut.transactions_id == 2
     assert acconut.money_in_account == 300
