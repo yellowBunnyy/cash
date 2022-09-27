@@ -21,13 +21,11 @@ def test_preserve_transaction_in_container(mocked_date):
     assert acconut.transactions == {transaction_id: transaction}
 
 
-
-
-
 def test_depisit_money_return_sum_depisit_and_money_in_acount():
     account = Account(100)
     account.deposit(100)
     assert account.account == 200
+    assert account.transactions_id == 1
     
 
 @patch("app.datetime")

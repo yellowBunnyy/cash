@@ -27,6 +27,7 @@ class Account:
 
     def deposit(self, money: int) -> None:
         self.account += money
+        self.transactions_id += 1
 
     def get_string_current_date(self):
         return datetime.date.today().strftime("%d-%m-%Y")
