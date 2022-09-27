@@ -1,6 +1,6 @@
 import datetime
 from unittest.mock import patch
-from app import Account
+from app import Account, Transactions
 
 
 def test_withdraw_money_from_account():
