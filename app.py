@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 import datetime
 
+class NotEnoughMoney(Exception):
+    pass
 
 @dataclass
 class TransactionsStatment:

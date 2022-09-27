@@ -1,6 +1,8 @@
 import datetime
 from unittest.mock import patch
-from app import Account, TransactionsStatment
+import pytest
+
+from app import Account, TransactionsStatment, NotEnoughMoney
 
 
 def test_withdraw_money_from_account():
@@ -8,6 +10,13 @@ def test_withdraw_money_from_account():
     account.withdraw(100)
     assert account.money_in_account == 0
     assert account.transactions_id == 1
+
+
+def test_fali_withdraw_money_if_we_have_not_enough_in_account_should_raise_exception():
+    account = Account(100)
+    with pytest.raises(NotEnoughMoney):
+        account.withdraw(200)
+
 
 
 @patch("app.datetime")
