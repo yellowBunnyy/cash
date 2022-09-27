@@ -49,5 +49,5 @@ class Account:
                 f"{transaction.date}\t{transaction.amount}\t{transaction.balance}\n"
             )
             statment += transaction_row
+        print(statment)
         return statment
-
