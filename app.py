@@ -17,7 +17,6 @@ class Account:
         self.money_in_account = statting_account_state
         self.transactions = {}
         self.transactions_id = 0
-    
 
     def preserve_transaction_in_container(self, transaction: TransactionsStatment):
         self.transactions.update({self.transactions_id: transaction})
