@@ -1,17 +1,20 @@
 import datetime
 from unittest.mock import patch
-from app import Account, Transactions
+from app import Account
 
 
 def test_withdraw_money_from_account():
     account = Account(100)
     account.withdraw(100)
     assert account.account == 0
+    assert account.transactions_id == 1
+
 
 def test_depisit_money_return_sum_depisit_and_money_in_acount():
     account = Account(100)
     account.deposit(100)
     assert account.account == 200
+    
 
 @patch("app.datetime")
 def test_get_current_date(mock_date):
