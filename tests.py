@@ -18,7 +18,6 @@ def test_fali_withdraw_money_if_we_have_not_enough_in_account_should_raise_excep
         account.withdraw(200)
 
 
-
 @patch("app.datetime")
 def test_preserve_transaction_in_container(mocked_date):
     mocked_date.date.today.return_value = "12-01-2022"
@@ -61,7 +60,9 @@ def test_printStatment_after_windraw_operation_should_return_string_with_operati
         money_afret_operation, f"-{withdraw_money}", date
     )
     account.transactions = {1: withdtaw_transaction}
-    expected = f"Date          Amount      Balance\n{date}\t-100\t{money_afret_operation}\n"
+    expected = (
+        f"Date          Amount      Balance\n{date}\t-100\t{money_afret_operation}\n"
+    )
     assert account.printStatment() == expected
 
 
